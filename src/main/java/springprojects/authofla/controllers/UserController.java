@@ -16,6 +16,12 @@ public class UserController {
     public String secondMethodinFirstExample(){
         return "same page second module";
     }
+
+    @GetMapping("/examplePath2")
+    public String thirdMethodinFirstExample(){
+        return "fatihin yaptigi controller";
+    }
+
 }
 
 
