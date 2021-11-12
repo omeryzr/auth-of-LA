@@ -1,4 +1,4 @@
-package springprojects.authofla.user;
+package springprojects.authofla.entities;
 
 public enum UserRole {
     USER,
