@@ -21,7 +21,7 @@ public class UserService implements UserDetailsService {
     private final static String USER_NOT_FOUND_MSG = "user with email %s not found";
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final ConfimationTokenService confimationTokenService;
+    private final ConfirmationTokenService confirmationTokenService;
 
     @Override
     public UserDetails loadUserByUsername(String email)
@@ -53,7 +53,7 @@ public class UserService implements UserDetailsService {
                 user
         );
 
-        confimationTokenService.saveConfirmationToken(confirmationToken);
+        confirmationTokenService.saveConfirmationToken(confirmationToken);
 
         //TODO: send e-mail
 
