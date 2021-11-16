@@ -2,10 +2,7 @@ package springprojects.authofla.controllers;
 
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springprojects.authofla.entities.RegistrationRequest;
 import springprojects.authofla.services.RegistrationService;
 
@@ -22,4 +19,8 @@ public class RegistrationController {
 
     }
 
+    @GetMapping
+    public String tokenConfirm(@RequestParam("token") String token){
+        return registrationService.confirmToken(token);
+    }
 }
