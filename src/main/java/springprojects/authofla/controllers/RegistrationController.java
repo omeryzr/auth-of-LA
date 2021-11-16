@@ -19,7 +19,7 @@ public class RegistrationController {
 
     }
 
-    @GetMapping
+    @GetMapping(path = "confirm")
     public String tokenConfirm(@RequestParam("token") String token){
         return registrationService.confirmToken(token);
     }
