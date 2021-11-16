@@ -67,14 +67,6 @@ public class User implements UserDetails {
         return password;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
     @Override
     public boolean isAccountNonExpired() {
         return true;
