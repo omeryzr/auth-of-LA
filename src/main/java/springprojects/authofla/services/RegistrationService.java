@@ -17,7 +17,7 @@ public class RegistrationService{
     private final UserService userService;
     private final EmailValidator emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
-
+    private final EmailSender emailSender;
 
     public String register(RegistrationRequest request){
         boolean isValidEmail = emailValidator.test(request.getEmail());
@@ -25,7 +25,7 @@ public class RegistrationService{
         if (!isValidEmail) {
             throw new IllegalStateException("email not valid");
         }
-        return userService.signUpUser(
+        String token = userService.signUpUser(
                  new User(
                        request.getFirstName(),
                        request.getLastName(),
@@ -34,6 +34,18 @@ public class RegistrationService{
                          UserRole.USER
                  )
         );
+        //temporary link
+        //you have to install maildev to use auto mail system.
+        /*$ npm install -g maildev
+          $ maildev
+                use -> http://localhost:1080/#/
+           if you want to use on Docker
+          $ docker run -p 1080:80 -p 1025:25 djfarrelly/maildev
+        */
+        String link = "http://localhost:8081/api/v1/registration/confirm?token=" + token;
+        emailSender.send(request.getEmail(),
+                buildEmail(request.getFirstName(), link));
+        return token;
     }
 
     @Transactional
