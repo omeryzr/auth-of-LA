@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import springprojects.authofla.entities.ConfirmationToken;
 import springprojects.authofla.entities.User;
+import springprojects.authofla.exceptions.ApiRequestException;
 import springprojects.authofla.repositories.UserRepository;
 
 import java.time.LocalDateTime;
@@ -35,7 +36,7 @@ public class UserService implements UserDetailsService {
                 .isPresent();
 
         if (existUser){
-            throw new IllegalStateException("email already taken");
+            throw new ApiRequestException("email already taken with custom exception");
         }
 
         String encodedPassword = bCryptPasswordEncoder
