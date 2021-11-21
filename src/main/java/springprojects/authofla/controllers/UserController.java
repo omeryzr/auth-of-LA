@@ -2,6 +2,7 @@ package springprojects.authofla.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import springprojects.authofla.entities.User;
@@ -21,5 +22,10 @@ public class UserController {
     @GetMapping("/profile")
     public Optional<User> myProfile(Principal principal){
         return userRepository.findByEmail(principal.getName());
+    }
+
+    @GetMapping("/profile/{email}")
+    public Optional<User> showUserProfile(@PathVariable String email){
+        return userRepository.findByEmail(email);
     }
 }
