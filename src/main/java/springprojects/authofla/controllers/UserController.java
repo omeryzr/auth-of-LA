@@ -24,8 +24,8 @@ public class UserController {
         return userRepository.findByEmail(principal.getName());
     }
 
-    @GetMapping("/profile/{email}")
-    public Optional<User> showUserProfile(@PathVariable String email){
-        return userRepository.findByEmail(email);
+    @GetMapping("/profile/{id}")
+    public Optional<User> showUserById(@PathVariable Long id){
+        return userRepository.findById(id);
     }
 }
