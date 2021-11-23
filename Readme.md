@@ -1,9 +1,13 @@
-Auth of LA 
-
+Autheantication of LAA 
+- This project included of; 
+- Authantication System,
+- Automatic mail confirmation system,
+- Existing Users features of Admin or User
+ 
 To use User Confirmation module, you should install the mailDev.
    
    
-   to install:  `$ npm install -g maildev`
+  to install:  `$ npm install -g maildev`
     
   to run: `$ maildev`  
  
