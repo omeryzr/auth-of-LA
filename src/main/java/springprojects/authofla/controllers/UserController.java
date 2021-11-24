@@ -30,6 +30,7 @@ public class UserController {
     @PutMapping("/profile/{id}")
     public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long id, @RequestBody User user){
         User userInformation = userRepository.getById(id);
+        userInformation.setEmail(user.getEmail());
         userInformation.setFirstName(user.getFirstName());
         userInformation.setLastName(user.getLastName());
         final User updatedUser = userRepository.save(userInformation);
