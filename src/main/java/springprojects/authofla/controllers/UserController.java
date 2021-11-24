@@ -1,10 +1,8 @@
 package springprojects.authofla.controllers;
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import springprojects.authofla.entities.User;
 import springprojects.authofla.repositories.UserRepository;
 
@@ -27,5 +25,14 @@ public class UserController {
     @GetMapping("/profile/{id}")
     public Optional<User> showUserById(@PathVariable Long id){
         return userRepository.findById(id);
+    }
+
+    @PutMapping("/profile/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long id, @RequestBody User user){
+        User userInformation = userRepository.getById(id);
+        userInformation.setFirstName(user.getFirstName());
+        userInformation.setLastName(user.getLastName());
+        final User updatedUser = userRepository.save(userInformation);
+        return ResponseEntity.ok(updatedUser);
     }
 }
