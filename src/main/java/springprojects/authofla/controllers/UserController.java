@@ -2,6 +2,7 @@ package springprojects.authofla.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import springprojects.authofla.entities.User;
 import springprojects.authofla.repositories.UserRepository;
@@ -28,6 +29,7 @@ public class UserController {
     }
 
     @PutMapping("/profile/{id}")
+    @PreAuthorize("hasRole('READ_PRIVILEGE')")
     public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long id, @RequestBody User user, Principal principal){
         User userInformation = userRepository.getById(id);
         if(principal.getName().equals(userInformation.getEmail())){
