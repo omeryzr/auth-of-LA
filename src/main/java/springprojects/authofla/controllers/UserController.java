@@ -42,4 +42,9 @@ public class UserController {
             return ResponseEntity.badRequest().body(user);
 
     }
+    @PutMapping("/profile/change-password")
+    public String changePassword(@RequestBody User user){
+        user.setPassword(user.getPassword());
+        return "changed";
+    }
 }
